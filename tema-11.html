@@ -17,24 +17,60 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,51 +82,51 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">UD4 · Óptica · Tema 11</p><h2 id="t11">Óptica física</h2><div class="tags"><span class="tag">UD4 · Óptica</span><span class="tag">Segundo parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> entender la interferencia (Young, láminas delgadas), la difracción por rendija y por red, el poder de resolución y la polarización con la ley de Malus y el ángulo de Brewster.</p>
-<p>La óptica física aparece cuando el tamaño de los obstáculos es comparable a \(\lambda\). Entonces los rayos ya no bastan y hay que sumar <b>ondas</b>, con su fase.</p>
-<p><b>Interferencia:</b> dos focos coherentes (misma frecuencia y desfase constante) se refuerzan si la diferencia de camino es múltiplo entero de \(\lambda\) y se anulan si es múltiplo impar de \(\lambda/2\).</p>
-<p><b>Young (doble rendija):</b> máximos en \(d\operatorname{sen}\theta=m\lambda\); en la pantalla, franjas separadas \(\Delta y=\lambda L/d\).</p>
-<p><b>Láminas delgadas</b> (pompa de jabón, antirreflejos): el camino extra es \(2nt\), y hay que sumar <b>λ/2</b> por cada reflexión en un medio de índice mayor.</p>
-<p><b>Difracción por rendija</b> de anchura \(a\): <b>mínimos</b> en \(a\operatorname{sen}\theta=m\lambda\) (ojo: aquí la fórmula con \(m\lambda\) da los ceros, no los máximos). <b>Red de difracción</b> de \(N\) rendijas: máximos en \(d\operatorname{sen}\theta=m\lambda\), muy estrechos, con poder de resolución \(R=mN\).</p>
-<p><b>Polarización:</b> Malus \(I=I_0\cos^2\theta\); luz natural tras un polarizador, \(I_0/2\). Ángulo de Brewster \(\tan\theta_B=n_2/n_1\): el reflejado sale totalmente polarizado.</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> entender la interferencia (Young, láminas delgadas), la difracción por rendija y por red, el poder de resolución y la polarización con la ley de Malus y el ángulo de Brewster.</p>
+<p class="lede">La óptica física aparece cuando el tamaño de los obstáculos es comparable a \(\lambda\). Entonces los rayos ya no bastan y hay que sumar <b>ondas</b>, con su fase.</p>
+<p class="run"><b>Interferencia:</b> dos focos coherentes (misma frecuencia y desfase constante) se refuerzan si la diferencia de camino es múltiplo entero de \(\lambda\) y se anulan si es múltiplo impar de \(\lambda/2\).</p>
+<p class="run"><b>Young (doble rendija):</b> máximos en \(d\operatorname{sen}\theta=m\lambda\); en la pantalla, franjas separadas \(\Delta y=\lambda L/d\).</p>
+<p class="run"><b>Láminas delgadas:</b> (pompa de jabón, antirreflejos): el camino extra es \(2nt\), y hay que sumar <b>λ/2</b> por cada reflexión en un medio de índice mayor.</p>
+<p class="run"><b>Difracción por rendija:</b> de anchura \(a\): <b>mínimos</b> en \(a\operatorname{sen}\theta=m\lambda\) (ojo: aquí la fórmula con \(m\lambda\) da los ceros, no los máximos). <b>Red de difracción</b> de \(N\) rendijas: máximos en \(d\operatorname{sen}\theta=m\lambda\), muy estrechos, con poder de resolución \(R=mN\).</p>
+<p class="run"><b>Polarización:</b> Malus \(I=I_0\cos^2\theta\); luz natural tras un polarizador, \(I_0/2\). Ángulo de Brewster \(\tan\theta_B=n_2/n_1\): el reflejado sale totalmente polarizado.</p>
 </div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">δ</td><td>Diferencia de camino óptico</td><td class="u">m; δ = d·sen θ</td></tr><tr><td class="sym">d</td><td>Separación entre rendijas o paso de red</td><td class="u">m; red de 600 líneas/mm → d = 1,67 µm</td></tr><tr><td class="sym">a</td><td>Anchura de una rendija</td><td class="u">m</td></tr><tr><td class="sym">m</td><td>Orden de interferencia o difracción</td><td class="u">entero</td></tr><tr><td class="sym">R</td><td>Poder de resolución λ/Δλ</td><td class="u">R = mN en una red</td></tr><tr><td class="sym">θ_B</td><td>Ángulo de Brewster</td><td class="u">tan θ_B = n₂/n₁</td></tr></table></div></div></details>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué hace falta coherencia</p><p>Dos bombillas no producen franjas. La razón es que cada átomo emite trenes de onda de unos nanosegundos con fase al azar: el desfase entre los dos focos cambia millones de veces por segundo y la figura de interferencia se promedia a gris uniforme.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué hace falta coherencia</p><p class="lede">Dos bombillas no producen franjas. La razón es que cada átomo emite trenes de onda de unos nanosegundos con fase al azar: el desfase entre los dos focos cambia millones de veces por segundo y la figura de interferencia se promedia a gris uniforme.</p>
 <p>Por eso Young usó <b>una</b> fuente y la dividió en dos con las rendijas: así ambas copias comparten el origen y mantienen el desfase. Un láser lo consigue por construcción, y de ahí que en el laboratorio se use siempre.</p>
 <p class="ft">Interferencia y difracción son lo mismo</p><p>La separación entre «interferencia» (pocos focos) y «difracción» (infinitos puntos de una abertura) es histórica, no física: en los dos casos se suman ondas con fases distintas.</p>
 <p>En la doble rendija real se ven las dos a la vez: las franjas finas de interferencia (\(d\operatorname{sen}\theta=m\lambda\)) moduladas por la <b>envolvente</b> ancha de la difracción de cada rendija (\(a\operatorname{sen}\theta=m\lambda\) para los ceros). Cuando un mínimo de difracción cae sobre un máximo de interferencia, ese orden <b>desaparece</b>: es el llamado orden ausente, y sale cuando \(d/a\) es entero.</p>
 </div><!--/amp1--><!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Suma de ondas y condición de interferencia</h4>
+<h4><span class="hn">1</span>Suma de ondas y condición de interferencia</h4>
 <div class="box key deepnote"><b>Idea clave.</b> dos ondas coherentes de igual amplitud desfasadas \(\varphi\) dan una resultante de amplitud \(A=2A_0\cos(\varphi/2)\), luego la intensidad es \(I=4I_0\cos^2(\varphi/2)\).</div>
 <p>El desfase viene de la diferencia de camino óptico \(\delta\):</p>
 <div class="eqd">\[\varphi=\frac{2\pi}{\lambda}\,\delta\]</div>
 <ul><li><b>Constructiva:</b> \(\delta=m\lambda\) (\(m=0,\pm1,\pm2\dots\)), intensidad \(4I_0\).</li><li><b>Destructiva:</b> \(\delta=(m+\tfrac12)\lambda\), intensidad nula.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> La intensidad máxima es <b>cuatro</b> veces la de un foco, no dos. No se suman intensidades, se suman amplitudes y luego se eleva al cuadrado. La energía total se conserva: lo que sobra en los máximos falta en los mínimos.</div>
-<h4>2. Experimento de Young</h4>
+<h4><span class="hn">2</span>Experimento de Young</h4>
 <p>Dos rendijas separadas \(d\) iluminadas en fase, pantalla a distancia \(L\gg d\). La diferencia de camino hacia un punto que se ve bajo ángulo \(\theta\) es \(\delta=d\operatorname{sen}\theta\):</p>
 <div class="eqd">\[d\operatorname{sen}\theta=m\lambda\ \ (\text{máximos})\qquad d\operatorname{sen}\theta=\left(m+\tfrac12\right)\lambda\ \ (\text{mínimos})\]</div>
 <p>Para ángulos pequeños \(\operatorname{sen}\theta\approx y/L\), así que las franjas son equidistantes:</p>
 <div class="eqd">\[y_m=\frac{m\lambda L}{d}\qquad \Delta y=\frac{\lambda L}{d}\]</div>
 <p>Esta última es la fórmula que se usa en laboratorio para <b>medir \(\lambda\)</b>: se cuentan franjas, se mide su separación y se despeja.</p>
-<h4>3. Láminas delgadas y el salto de fase</h4>
+<h4><span class="hn">3</span>Láminas delgadas y el salto de fase</h4>
 <p>En una lámina de índice \(n\) y espesor \(t\), el rayo que entra y vuelve recorre \(2nt\) de camino óptico de más que el que se refleja en la cara superior. Pero hay un detalle decisivo:</p>
 <div class="box key deepnote"><b>Idea clave.</b> toda reflexión en un medio de <b>mayor</b> índice añade un salto de fase de \(\pi\), equivalente a <b>media longitud de onda</b>. La reflexión en un medio de menor índice no añade nada.</div>
 <p>Para una pompa de jabón en aire (aire–agua–aire) solo la primera reflexión salta, así que la condición se invierte respecto a la intuitiva:</p>
 <div class="eqd">\[2nt=\left(m+\tfrac12\right)\lambda\ \ (\text{máximo de reflexión})\qquad 2nt=m\lambda\ \ (\text{mínimo})\]</div>
 <p><b>Capa antirreflejos</b> de una lente: se busca el <b>mínimo</b> en reflexión. Si el índice de la capa está entre el del aire y el del vidrio, saltan las dos reflexiones, los saltos se cancelan y la condición de mínimo vuelve a ser \(2nt=(m+\tfrac12)\lambda\); el espesor más fino es \(t=\lambda/4n\), de ahí el nombre de «capa de cuarto de onda».</p>
 <div class="box trap deepnote"><b>Cuidado.</b> Antes de escribir la condición, cuenta <b>cuántas</b> de las dos reflexiones ocurren contra un índice mayor. Si saltan las dos o ninguna, la condición es la directa; si salta solo una, se invierte. Este es el punto que más se falla del tema.</div>
-<h4>4. Difracción por una rendija</h4>
+<h4><span class="hn">4</span>Difracción por una rendija</h4>
 <p>Una rendija de anchura \(a\) no da un punto, sino una mancha central ancha con máximos laterales débiles. Dividiendo la rendija en parejas de puntos que se cancelan se obtiene la condición de <b>mínimo</b>:</p>
 <div class="eqd">\[a\operatorname{sen}\theta=m\lambda\qquad m=\pm1,\pm2,\dots\]</div>
 <p>El máximo central tiene anchura angular \(2\lambda/a\) y concentra el 84 % de la energía. Cuanto más estrecha es la rendija, <b>más</b> se abre la luz: es contraintuitivo pero es la clave de todo el tema.</p>
 <ul><li>Para una abertura circular de diámetro \(D\), el primer anillo oscuro está en \(\operatorname{sen}\theta=1{,}22\lambda/D\).</li><li><b>Criterio de Rayleigh:</b> dos fuentes se distinguen si su separación angular supera ese valor. Es lo que limita la resolución de un telescopio o de un microscopio.</li></ul>
-<h4>5. Red de difracción y poder de resolución</h4>
+<h4><span class="hn">5</span>Red de difracción y poder de resolución</h4>
 <p>Con \(N\) rendijas los máximos están en el mismo sitio que con dos (\(d\operatorname{sen}\theta=m\lambda\)), pero se vuelven <b>mucho más estrechos</b>: la anchura es proporcional a \(1/N\). Por eso una red separa colores que una doble rendija no distingue.</p>
 <div class="eqd">\[R=\frac{\lambda}{\Delta\lambda}=mN\]</div>
 <p>Con una red de 600 líneas/mm y 2 cm iluminados hay \(N=12000\) rendijas; en segundo orden \(R=24000\), suficiente para resolver el doblete del sodio (589,0 y 589,6 nm, que exige \(R\approx1000\)).</p>
 <details class="dem"><summary><span class="pn">∴</span>Número máximo de órdenes visibles</summary><div class="inner"><p>Como \(\operatorname{sen}\theta\le1\), de \(d\operatorname{sen}\theta=m\lambda\) sale \(m_{\max}=\lfloor d/\lambda\rfloor\). Con \(d=1{,}67\) µm y \(\lambda=600\) nm, \(m_{\max}=2\): solo se ven los órdenes 0, ±1 y ±2.</p></div></details>
-<h4>6. Polarización</h4>
+<h4><span class="hn">6</span>Polarización</h4>
 <p>La luz es una onda transversal, así que el campo \(\vec E\) puede oscilar en cualquier dirección perpendicular a la propagación. La luz natural es una mezcla al azar de todas.</p>
 <ul><li><b>Por absorción (polaroid):</b> deja pasar una dirección. Luz natural de intensidad \(I_0\) sale con \(I_0/2\).</li><li><b>Ley de Malus:</b> luz ya polarizada que atraviesa un segundo polarizador girado \(\theta\): \(I=I_0\cos^2\theta\).</li><li><b>Por reflexión:</b> en el ángulo de Brewster el rayo reflejado sale totalmente polarizado paralelo a la superficie.</li></ul>
 <div class="eqd">\[\tan\theta_B=\frac{n_2}{n_1}\]</div>
